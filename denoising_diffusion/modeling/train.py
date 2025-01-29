@@ -1,30 +1,29 @@
 from pathlib import Path
 
-import typer
 from loguru import logger
 from tqdm import tqdm
 
-from denoising_diffusion.config import MODELS_DIR, PROCESSED_DATA_DIR
+# Deep Learning Libraries
+import torch
 
-app = typer.Typer()
-
-
-@app.command()
-def main(
-    # ---- REPLACE DEFAULT PATHS AS APPROPRIATE ----
-    features_path: Path = PROCESSED_DATA_DIR / "features.csv",
-    labels_path: Path = PROCESSED_DATA_DIR / "labels.csv",
-    model_path: Path = MODELS_DIR / "model.pkl",
-    # -----------------------------------------
-):
-    # ---- REPLACE THIS WITH YOUR OWN CODE ----
-    logger.info("Training some model...")
-    for i in tqdm(range(10), total=10):
-        if i == 5:
-            logger.info("Something happened for iteration 5.")
-    logger.success("Modeling training complete.")
-    # -----------------------------------------
-
+from denoising_diffusion.config import (
+    MODELS_DIR, PROCESSED_DATA_DIR, RAW_DATA_DIR,
+    train_config
+                                        )
+from denoising_diffusion.modeling.models.unet import UNet
 
 if __name__ == "__main__":
-    app()
+    if torch.has_mps:
+        torch.mps.empty_cache()
+        print("MPS cache cleared.")
+    elif torch.cuda.is_available():
+        torch.cuda.empty_cache()
+        print("CUDA cache cleared.")
+    else:
+        print("Accelerators not available.")
+    model_name = train_config["model_name"]
+    unet_config = train_config["model_config"]
+    trainer_config = train_config["trainer_config"]
+    diffusion_config = train_config["diffusion_config"]
+
+    unet = getattr(UNet, model_name)

@@ -27,7 +27,22 @@ install:	install-poetry
 install-dev:	install
 	poetry	install	--dev
 
+# Install debugpy for debugging
+.PHONY:	install-debugpy
+install-debugpy:
+	poetry	add	debugpy	--dev
+
 # Update the dependencies
 .PHONY:	update
 update:
 	poetry	update
+
+# Download the data to raw directory
+.PHONY:	download-data
+download-data:
+	poetry	run	python	denoising_diffusion/dataset.py
+
+# Activate poetry environment and run debugpy
+.PHONY:	debug-train
+debug-train:
+	poetry	run	python	-m	debugpy	--listen	0.0.0.0:5678	--wait-for-client	denoising_diffusion/modeling/train.py

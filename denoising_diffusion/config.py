@@ -30,3 +30,27 @@ try:
     logger.add(lambda msg: tqdm.write(msg, end=""), colorize=True)
 except ModuleNotFoundError:
     pass
+
+# Training config
+train_config = {
+    "model_name": "UNet",
+    "trainer_config":{
+        "batch_size": 16,
+        "train_lr":1e-4,
+        "train_num_steps": 100000,
+        "train_save_interval": 1000,
+        "num_samples": 4,
+    },
+    "model_config": {
+        "model_mapping": "UNet",
+        "input": 64,
+        "batch_size": 16,
+        "dim_mults": (1, 2, 4, 8),
+        "channels": 3,
+    },
+    "diffusion_config":{
+        "timesteps": 1000,
+        "beta_scheduler": "linear",
+        "image_size": 128,
+    }
+}

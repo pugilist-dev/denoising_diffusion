@@ -23,6 +23,12 @@ tqdm = "^4.62.2"
 torch = "*"
 torchvision = "*"
 torchaudio = "*"
+einops = "*"
+kagglehub = "*"
+
+
+[tool.poetry.group.dev.dependencies]
+debugpy = "^1.8.12"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
