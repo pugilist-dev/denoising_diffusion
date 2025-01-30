@@ -12,3 +12,15 @@ def identity(x):
 
 def default(val, def_val):
     return def_val if val is None else val
+
+def cycle(dl):
+    while True:
+        for data in dl:
+            yield data
+
+def extract(
+    constants, timestamps, shape
+):
+    batch_size = timestamps.shape[0]
+    out = constants.gather(-1, timestamps)
+    return out.reshape(batch_size, *((1,) * (len(shape) - 1))).to(timestamps.device)

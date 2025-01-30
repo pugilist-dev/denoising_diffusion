@@ -663,6 +663,21 @@ files = [
 ]
 
 [[package]]
+name = "ema-pytorch"
+version = "0.7.7"
+description = "Easy way to keep track of exponential moving average version of your pytorch module"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "ema_pytorch-0.7.7-py3-none-any.whl", hash = "sha256:320b68ac33136b558a31cb383f8183aae57f7e9d92166d6f072410df8b0a00de"},
+    {file = "ema_pytorch-0.7.7.tar.gz", hash = "sha256:ecce0e3439e03c00f95a253d6f15ada415fcab09c2c0bd15f30349d375c69ad7"},
+]
+
+[package.dependencies]
+torch = ">=2.0"
+
+[[package]]
 name = "fastjsonschema"
 version = "2.21.1"
 description = "Fastest Python implementation of JSON schema"
@@ -3811,4 +3826,4 @@ test = ["mypy", "pre-commit", "pytest", "pytest-asyncio", "websockets (>=10.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "5ca602f6c9ef220bac20253ec0b735cb7d8258997a9bee8baf3b9f350fe20128"
+content-hash = "c6f28b6120ae0442ae5e8d2040317fd41c7963bf97273232ce2023679132607a"

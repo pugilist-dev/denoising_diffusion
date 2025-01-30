@@ -25,6 +25,7 @@ torchvision = "*"
 torchaudio = "*"
 einops = "*"
 kagglehub = "*"
+ema_pytorch = "*"
 
 
 [tool.poetry.group.dev.dependencies]

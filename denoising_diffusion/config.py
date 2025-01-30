@@ -45,7 +45,7 @@ train_config = {
         "model_mapping": "UNet",
         "input": 64,
         "batch_size": 16,
-        "dim_mults": (1, 2, 4, 8),
+        "dim_mults": [1, 2, 4, 8],
         "channels": 3,
     },
     "diffusion_config":{
