@@ -17,10 +17,8 @@ from denoising_diffusion.modeling.models import unet as unet_module
 from denoising_diffusion.modeling.Trainer import Trainer
 
 def main():
-    if torch.has_mps:
-        torch.mps.empty_cache()
-        print("MPS cache cleared.")
-    elif torch.cuda.is_available():
+
+    if torch.cuda.is_available():
         torch.cuda.empty_cache()
         print("CUDA cache cleared.")
     else:

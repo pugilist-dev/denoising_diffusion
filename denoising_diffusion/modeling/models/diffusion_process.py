@@ -103,7 +103,7 @@ class DiffusionModel(nn.Module):
     def p_sample_loop(
         self, shape: tuple, return_all_timesteps: bool = False
     ) -> torch.Tensor:
-        batch, device = shape[0], "mps"
+        batch, device = shape[0], "cuda" if torch.cuda.is_available() else "cpu"
 
         img = torch.randn(shape, device=device)
         # This cause me a RunTimeError on MPS device due to MPS back out of memory

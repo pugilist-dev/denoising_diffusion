@@ -45,7 +45,7 @@ class Trainer:
                                    augment_horizontal_flip=augment_horizontal_flip)
         self.dl = cycle(DataLoader(self.ds,
                                     batch_size=self.batch_size,
-                                      shuffle=True, num_workers=0, pin_memory=True,
+                                      shuffle=True, num_workers=12, pin_memory=True,
                                       ))
         self.opt = AdamW(diffusion_model.parameters(), lr=train_lr, betas=adam_betas)
 
@@ -112,7 +112,7 @@ class Trainer:
                     for ix, sampled_imgs in enumerate(sampled_imgs):
                         utils.save_image(
                             sampled_imgs,
-                            str(self.result_loc / f"sample_{milestone}_{ix}.png"),
+                            str(self.results_loc / f"sample_{milestone}_{ix}.png"),
                         )
                     
                     self.save(milestone)
