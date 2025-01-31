@@ -42,6 +42,10 @@ update:
 download-data:
 	poetry	run	python	denoising_diffusion/dataset.py
 
+.PHONY:	train
+train:
+	poetry	run	python	denoising_diffusion/modeling/train.py
+
 # Activate poetry environment and run debugpy
 .PHONY:	debug-train
 debug-train:
